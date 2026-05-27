@@ -152,7 +152,7 @@ Create a `db.json` file in the root of the project:
 Start the fake API server:
 
 ```bash
-npx json-server db.json
+npx json-server database/db.json
 ```
 
 By default, the server will run on:
