@@ -97,7 +97,7 @@ If you want to install everything manually:
 ## Install Vite
 
 ```bash
-npm install vite@latest
+npm create vite@latest
 ```
 
 ## Install Tailwind CSS
