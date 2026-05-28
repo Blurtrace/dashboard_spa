@@ -97,7 +97,7 @@ If you want to install everything manually:
 ## Install Vite
 
 ```bash
-npm install vite@latest
+npm create vite@latest
 ```
 
 ## Install Tailwind CSS
@@ -152,7 +152,7 @@ Create a `db.json` file in the root of the project:
 Start the fake API server:
 
 ```bash
-npx json-server db.json
+npx json-server database/db.json
 ```
 
 By default, the server will run on:
