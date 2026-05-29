@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 // ==========================================
 // 🔑 LOGIN
 // ==========================================
-expo  rt function loginController() {
+export function loginController() {
   const username = document.getElementById("username");
   const password = document.getElementById("password");
   const errorUsername = document.getElementById("errorUsername");
