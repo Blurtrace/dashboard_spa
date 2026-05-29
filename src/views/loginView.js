@@ -3,7 +3,7 @@
 // 🔐 VISTA: LOGIN / REGISTER
 // ==========================================
 export default function renderLogin() {
-    return  `
+  return  `
   <main class="bg-gray-100 flex justify-center items-center min-h-screen">
     <div class="container relative w-[790px] h-[550px] bg-white rounded-3xl shadow-2xl overflow-hidden flex">
 
@@ -20,7 +20,7 @@ export default function renderLogin() {
               <ion-icon name="mail-outline" class="text-gray-500 text-xl"></ion-icon>
               <input type="text" id="username" placeholder="Username" class="w-full outline-none bg-transparent" />
             </div>
-            <p id="errorUsername" class="text-red-500 text-xs hidden px-1">Este campo es requerido</p>
+            <p id="errorUsername" class="text-red-500 text-xs hidden px-1 ">This field is required</p>
           </div>
 
           <div class="w-[320px] flex flex-col gap-1">
@@ -28,7 +28,7 @@ export default function renderLogin() {
               <ion-icon name="lock-closed-outline" class="text-gray-500 text-xl"></ion-icon>
               <input type="password" id="password" placeholder="******" class="w-full outline-none bg-transparent" />
             </div>
-            <p id="errorPassword" class="text-red-500 text-xs hidden px-1">Este campo es requerido</p>
+            <p id="errorPassword" class="text-red-500 text-xs hidden px-1">This field is required</p>
           </div>
 
           <a href="#" class="text-sm text-blue-500 hover:underline">Forgot your password?</a>

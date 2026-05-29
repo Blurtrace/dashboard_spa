@@ -45,7 +45,7 @@ async function renderRoute() {
     appContainer.innerHTML = route.view()
 
     if (route.controller) {
-      await route.controller()
+      await route.controller(user)
     }
 
     return
@@ -55,7 +55,7 @@ async function renderRoute() {
   if(!user && path !== "login"){
 
     appContainer.innerHTML = router.login.view()
-    await router.login.controller()
+    await router.login.controller(user)
 
     return
   }

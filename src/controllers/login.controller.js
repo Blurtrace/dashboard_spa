@@ -1,34 +1,88 @@
 import Swal from "sweetalert2";
-
 // ==========================================
 // 🔑 LOGIN
 // ==========================================
-expo  rt function loginController() {
-  const username = document.getElementById("username");
-  const password = document.getElementById("password");
+
+export function loginController(user) {
+  loginListeners(user);
+}
+
+function loginListeners(user) {
+  const formRegister = document.getElementById("register-form");
+  const container = document.querySelector(".container");
+
+  document.getElementById("btn-sign-in").addEventListener("click", () => container.classList.remove("toggle"));
+    
+  document.getElementById("btn-sign-up").addEventListener("click", () => container.classList.add("toggle"));
+    
+  document.querySelector("#formData").addEventListener("submit", (e) => {
+    e.preventDefault();
+    
+    validateLogin(user);
+  });
+
+  formRegister.addEventListener("submit", (e) => {
+    e.preventDefault();
+    createUser();
+
+  });
+}
+
+function validateLogin(user) {
+  const { userName, passUser } = getLoginData();
+  const hasErrors = validateEmptyFields(userName, passUser);
+  
+  if (hasErrors) return;
+
+  const userFound = findUser(user, userName, passUser);
+  if(userFound){
+    loginSuccess(userFound);
+  } else{
+    loginError();
+  }
+
+}
+
+function getLoginData() {
+  const userName = document.getElementById("username");
+  const passUser = document.getElementById("password");
+
+  return {
+    userName: userName.value.trim(),
+    passUser: passUser.value.trim(),
+  };
+}
+
+function validateEmptyFields(userField, passField) {
   const errorUsername = document.getElementById("errorUsername");
   const errorPassword = document.getElementById("errorPassword");
-  loginListeners();
   errorUsername.classList.add("hidden");
   errorPassword.classList.add("hidden");
 
-  let hayError = false;
-  if (!username.value) {
+  let errorFound = false;
+  if (!userField) {
     errorUsername.classList.remove("hidden");
-    hayError = true;
+    errorFound = true;
   }
-  if (!password.value) {
+  if (!passField) {
     errorPassword.classList.remove("hidden");
-    hayError = true;
+    errorFound = true;
   }
-  if (hayError) return;
+  return errorFound;
+}
 
-  const userFound = userLogged.find(
-    (u) => u.userName === username.value && u.userPass === password.value,
-  );
+function findUser(user, userName, passUser) {
+    return user.find(
+        (u) =>
+            u.userName === userName &&
+            u.userPass === passUser
 
+    );
+}
+
+function loginSuccess(userFound) {
   if (userFound) {
-    localStorage.setItem("loggedUser", JSON.stringify(userFound));
+    localStorage.setItem("user", JSON.stringify(userFound));
     Swal.fire({
       icon: "success",
       title: "Welcome!",
@@ -36,34 +90,16 @@ expo  rt function loginController() {
       timer: 1500,
       showConfirmButton: false,
     }).then(() => navigate("home"));
-  } else {
+  }
+}
+
+function loginError() {
     Swal.fire({
       icon: "error",
       title: "Login failed",
       text: "User or password doesn't match",
     });
   }
-}
-
-function loginListeners() {
-  const formRegister = document.getElementById("register-form");
-  const container = document.querySelector(".container");
-
-  document
-    .getElementById("btn-sign-in")
-    .addEventListener("click", () => container.classList.remove("toggle"));
-  document
-    .getElementById("btn-sign-up")
-    .addEventListener("click", () => container.classList.add("toggle"));
-  document.querySelector("#formData").addEventListener("submit", (e) => {
-    e.preventDefault();
-    validarLogin();
-  });
-  formRegister.addEventListener("submit", (e) => {
-    e.preventDefault();
-    createUser();
-  });
-}
 
 // ==========================================
 // 👤 REGISTER
