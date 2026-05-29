@@ -1,16 +1,16 @@
-export function homeController(){
-    const user = JSON.parse(localStorage.getItem("user"));
-
-    const userInfo = document.getElementById("spanUserName");
-    userInfo.innerText = user.full_name;
-}import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 // ===================================
 // 🏠 HOME 
 // ===================================
 
-export function homeController(user) {
+export function homeController(user){
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const userInfo = document.getElementById("spanUserName");
+    userInfo.innerText = user.full_name;
     homeListeners(user);
-}                          
+}
+                       
 
 function homeListeners(user) {  
     const hamburger = document.getElementById("menu-btn");
@@ -29,7 +29,4 @@ function homeListeners(user) {
         
 
     })
-
-
-
 }                          
