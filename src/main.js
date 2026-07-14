@@ -1,15 +1,20 @@
 import "./style.css";
 import notFoundView from './views/notFoundView.js'
-import homeView from './views/loginView.js'
+import renderHome from './views/loginView.js'
 import { loginController } from './controllers/login.controller.js'
 import { userView } from './views/userView.js'
 import renderLogin from "./views/loginView.js";
+import homeView from './views/homeView.js'
+import { homeController } from './controllers/home.controller.js'
+import layout from "./components/layout.js";
+
 
 const appContainer = document.getElementById('app');
 
 const router = {
   home: {
     view: homeView,
+    controller: homeController
   },
 
   login: {
@@ -45,7 +50,7 @@ async function renderRoute() {
     appContainer.innerHTML = route.view()
 
     if (route.controller) {
-      await route.controller(user)
+      await route.controller()
     }
 
     return
@@ -55,7 +60,7 @@ async function renderRoute() {
   if(!user && path !== "login"){
 
     appContainer.innerHTML = router.login.view()
-    await router.login.controller(user)
+    await router.login.controller()
 
     return
   }
